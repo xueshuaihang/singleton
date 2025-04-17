@@ -1,10 +1,9 @@
 package com.file;
 
-import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @author Shuaihang Xue
@@ -16,16 +15,17 @@ public class FileMain {
     static File desktop = new File("C:\\Users\\hanghang\\Desktop");
 
     public static void main(String[] args) throws IOException {
-        List<String> list = null;
-        for (String s : list) {
-            System.out.println(s);
-        }
+//        List<String> list = null;
+//        for (String s : list) {
+//            System.out.println(s);
+//        }
 //        createNewFile();
 //        creatTempFileAndDeleteOnExit();
 //        deleteFile();
 //        getFilePath();
 //        isFileOrDirectory();
 //        getAuthAndSize();
+        getFileList("F:\\singleton\\.git");
     }
 
     public static void createNewFile() throws IOException {
@@ -70,5 +70,32 @@ public class FileMain {
         // 对目录而言，是否可执行表示能否列出它包含的文件和子目录。
         System.out.println(desktop.canExecute());
         System.out.println(testFile.length());
+    }
+
+    static void getFileList() {
+        getFileList(null);
+    }
+
+    static void getFileList(String path) {
+        File file;
+        if (StringUtils.isEmpty(path)) {
+            file = new File(".");
+            System.out.println(file.getAbsolutePath());
+        } else {
+             file = new File(path);
+        }
+        printFileName(file, "");
+    }
+
+    static void printFileName(File file, String prefix) {
+        if (file.isDirectory()) {
+            System.out.println(prefix + file.getName() + File.separator);
+            File[] files = file.listFiles();
+            for (File f : files) {
+                printFileName(f, "  " + prefix);
+            }
+        } else {
+            System.out.println(prefix + file.getName());
+        }
     }
 }
