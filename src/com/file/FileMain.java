@@ -1,9 +1,8 @@
 package com.file;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * @author Shuaihang Xue
@@ -78,7 +77,7 @@ public class FileMain {
 
     static void getFileList(String path) {
         File file;
-        if (StringUtils.isEmpty(path)) {
+        if (Objects.isNull(path)) {
             file = new File(".");
             System.out.println(file.getAbsolutePath());
         } else {
