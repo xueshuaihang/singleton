@@ -24,8 +24,7 @@ public class AnnotationMain {
     }
 
     public static void setProductTimeByProductTimeStr(NoteBook noteBook) throws IllegalAccessException, ParseException, NoSuchFieldException {
-        Class noteBookClass = NoteBook.class;
-        noteBookClass.getFields();
+        Class<NoteBook> noteBookClass = NoteBook.class;
         Field[] fields = noteBookClass.getDeclaredFields();
         for (Field field : fields) {
             if (field.isAnnotationPresent(TransferDate.class)) {
